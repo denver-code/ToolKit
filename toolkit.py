@@ -1,6 +1,7 @@
 import jwt
 import datetime
 import uuid
+import secrets
 from random import randint
 
 from fastapi import HTTPException, Header
@@ -24,8 +25,8 @@ class ToolKit:
                 return randint(min, max)
             return randint(1000, 9999)
         
-        async def list_selector(array):
-            pass
+        def list_selector(array):
+            return secrets.choice(array)
 
     class FastJWT:
         def __init__(self):
@@ -66,3 +67,4 @@ class ToolKit:
 
             except:
                 raise HTTPException(status_code=401, detail="Unauthorized")
+
