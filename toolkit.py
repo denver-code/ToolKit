@@ -1,5 +1,7 @@
 import jwt
 import datetime
+import uuid
+from random import randint
 
 from fastapi import HTTPException, Header
 
@@ -8,10 +10,22 @@ class ToolKit:
     def __init__(self):
         pass
 
-    class Generator:
-        def __init__():
+    class Generate:
+        def __init__(self):
             pass
 
+        async def uuid4(hex=False):
+            if hex:
+                return uuid.uuid4().hex
+            return uuid.uuid4()
+
+        async def random_code(min=None, max=None):
+            if min and max:
+                return randint(min, max)
+            return randint(1000, 9999)
+        
+        async def list_selector(array):
+            pass
 
     class FastJWT:
         def __init__(self):
@@ -52,4 +66,3 @@ class ToolKit:
 
             except:
                 raise HTTPException(status_code=401, detail="Unauthorized")
-
