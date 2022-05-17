@@ -94,13 +94,21 @@ class ToolKit:
             regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
             if not re.fullmatch(regex, email):
                 raise ValueError("Invalid email")
-            return email
+            return email 
         
-        async def hash_sha256(hash):
+
+        async def hash_sha256(_hash):
             regex = r"^[a-fA-F0-9]{64}$"
-            if not re.fullmatch(regex, hash):
+            if not re.fullmatch(regex, _hash):
                 raise ValueError("Invaid hash")
-            return hash
+            return _hash
+        
+
+        async def integer(value):
+            regex = r"^[-+]?[0-9]+$"
+            if not re.fullmatch(regex, value):
+                raise ValueError("Invaid hash")
+            return value
 
 
     class Generate:
