@@ -13,7 +13,7 @@ class ToolKit:
         pass
 
 
-    class IntFixer:
+    class IntFix:
         def __init__():
             pass
 
@@ -73,7 +73,7 @@ class ToolKit:
         async def get_time(value, time_format):
             avaible_formats = ["d", "m", "h", "s"]
 
-            if not await ToolKit.IntFixer.represents_int(value):
+            if not await ToolKit.IntFix.represents_int(value):
                 value = 60
 
             if time_format == "d":
@@ -86,7 +86,21 @@ class ToolKit:
                 value = (datetime.datetime.now() + timedelta(seconds=value)).timestamp()
 
     
-    
+    class Validate:
+        def __init__(self):
+            pass
+
+        async def email(email):
+            regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b"
+            if not re.fullmatch(regex, email):
+                raise ValueError("Invalid email")
+            return email
+        
+        async def hash_sha256(hash):
+            regex = r"^[a-fA-F0-9]{64}$"
+            if not re.fullmatch(regex, hash):
+                raise ValueError("Invaid hash")
+            return hash
 
 
     class Generate:
