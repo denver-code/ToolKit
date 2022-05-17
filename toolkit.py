@@ -19,7 +19,7 @@ class ToolKit:
 
         
         # Maybe later I try realize it with regex :)
-        async def RepresentsInt(
+        async def represents_int(
             self, 
             value,
             return_value=False
@@ -44,7 +44,7 @@ class ToolKit:
             max_value=None,
             min_value=None,
         ):
-            if not self.RepresentsInt():
+            if not await self.represents_int():
                 raise InvalidRepresentOfNumber
             
             if fix_negative:
@@ -63,8 +63,32 @@ class ToolKit:
                     return min_value        
             
             return int(value)
-                        
-                        
+
+
+    class DateGenerator:
+        def __init__(self):
+            pass
+
+        
+        async def get_time(value, time_format):
+            avaible_formats = ["d", "m", "h", "s"]
+
+            if not await ToolKit.IntFixer.represents_int(value):
+                value = 60
+
+            if time_format == "d":
+                value = (datetime.datetime.now() + timedelta(days=value)).timestamp()
+            elif time_format == "m":
+                value = (datetime.datetime.now() + timedelta(minutes=value)).timestamp()
+            elif time_format == "h":
+                value = (datetime.datetime.now() + timedelta(hours=value)).timestamp()
+            else:
+                value = (datetime.datetime.now() + timedelta(seconds=value)).timestamp()
+
+    
+    
+
+
     class Generate:
         def __init__(self):
             pass
