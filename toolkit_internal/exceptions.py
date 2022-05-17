@@ -1,0 +1,3 @@
+class InvalidRepresentsOfNumber(Exception):
+    pass
+    
